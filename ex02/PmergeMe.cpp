@@ -1,7 +1,4 @@
 #include "PmergeMe.hpp"
-#include <algorithm>
-
-size_t sort_count = 0;
 
 PmergeMe::PmergeMe()
 {
@@ -71,7 +68,6 @@ std::vector<size_t> sort_indices_vec(const std::vector<int> &data, std::vector<s
     {
         size_t idx1 = indices[i];
         size_t idx2 = indices[i + 1];
-        sort_count++;
         if (data[idx1] > data[idx2])
         {
             larger_indices.push_back(idx1);
@@ -136,7 +132,6 @@ std::vector<size_t> sort_indices_vec(const std::vector<int> &data, std::vector<s
             while (left < right)
             {
                 size_t mid = left + (right - left) / 2;
-                sort_count++;
                 if (data[result[mid]] < val_to_insert)
                     left = mid + 1;
                 else
@@ -164,7 +159,6 @@ std::vector<size_t> sort_indices_vec(const std::vector<int> &data, std::vector<s
         while (left < right)
         {
             size_t mid = left + (right - left) / 2;
-            sort_count++;
             if (data[result[mid]] < val_to_insert)
                 left = mid + 1;
             else
@@ -222,7 +216,6 @@ std::list<size_t> sort_indices_list(const std::list<int> &data, std::list<size_t
         std::list<int>::const_iterator it2 = data.begin();
         std::advance(it2, idx2);
 
-        sort_count++;
         if (*it1 > *it2)
         {
             larger_indices.push_back(idx1);
@@ -301,7 +294,6 @@ std::list<size_t> sort_indices_list(const std::list<int> &data, std::list<size_t
                 std::advance(res_it, mid);
                 std::list<int>::const_iterator d_it = data.begin();
                 std::advance(d_it, *res_it);
-                sort_count++;
                 if (*d_it < val_to_insert)
                     left = mid + 1;
                 else
@@ -338,7 +330,6 @@ std::list<size_t> sort_indices_list(const std::list<int> &data, std::list<size_t
             std::advance(res_it, mid);
             std::list<int>::const_iterator d_it = data.begin();
             std::advance(d_it, *res_it);
-            sort_count++;
             if (*d_it < val_to_insert)
                 left = mid + 1;
             else
@@ -376,39 +367,40 @@ std::list<int> merge_insertion_sort_list(std::list<int> lst)
 
 void PmergeMe::MIsort_vec()
 {
-    sort_count = 0;
-    clock_t start = clock();
-    this->vec_ = merge_insertion_sort_vec(this->vec_);
-    clock_t end = clock();
-    double sort_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
-    std::cout << "vector sorted: ";
+	std::cout << "Before:	";
     for (size_t i = 0; i < this->vec_.size(); i++)
     {
         std::cout << this->vec_.at(i) << " ";
     }
+	std::cout << std::endl;
+
+    clock_t start = clock();
+    this->vec_ = merge_insertion_sort_vec(this->vec_);
+    clock_t end = clock();
+    double sort_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
+    std::cout << "After: 	";
+    for (size_t j = 0; j < this->vec_.size(); j++)
+    {
+        std::cout << this->vec_.at(j) << " ";
+    }
     std::cout << std::endl;
 
-    std::cout << "Time to process a range of " << this->vec_.size() << " elements with std::vector : " << sort_time << " us" << std::endl;
-
-    std::cout << "[DEBUG] std::vector comparison count: " << sort_count << std::endl;
+    std::cout << "Time to process a range of " << this->vec_.size() << " elements with std::vector : " << sort_time << " ms" << std::endl;
 }
 
 void PmergeMe::MIsort_list()
 {
-    sort_count = 0;
     clock_t start = clock();
     this->list_ = merge_insertion_sort_list(this->list_);
     clock_t end = clock();
     double sort_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
 
-    std::cout << "list sorted: ";
-    for (std::list<int>::const_iterator it = this->list_.begin(); it != this->list_.end(); ++it)
-    {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
+    // std::cout << "After(list): 	";
+    // for (std::list<int>::const_iterator it = this->list_.begin(); it != this->list_.end(); ++it)
+    // {
+    //     std::cout << *it << " ";
+    // }
+    // std::cout << std::endl;
 
-    std::cout << "Time to process a range of " << this->list_.size() << " elements with std::list : " << sort_time << " us" << std::endl;
-
-    std::cout << "[DEBUG] std::list comparison count: " << sort_count << std::endl;
+    std::cout << "Time to process a range of " << this->list_.size() << " elements with std::list : " << sort_time << " ms" << std::endl;
 }
