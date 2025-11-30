@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stack>
 #include <stdexcept>
+#include <limits>
 
 class RPN
 {
