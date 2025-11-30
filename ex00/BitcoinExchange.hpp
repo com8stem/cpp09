@@ -21,7 +21,7 @@ class BitcoinExchange
         BitcoinExchange &operator=(const BitcoinExchange &);
         ~BitcoinExchange();
         void read_csv(std::ifstream &ifs);
-        std::ifstream open_txt();
+        void open_txt(std::ifstream &ifs);
         void create_database();
         void search_database();
 };
