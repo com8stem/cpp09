@@ -2,14 +2,14 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 2)
-    {
-        std::cerr << "Error: could not open file." << std::endl;
-        return 1;
-    }
+	if (argc != 2)
+	{
+		std::cerr << "Error: could not open file." << std::endl;
+		return 1;
+	}
 
-    BitcoinExchange exchange(argv[1]);
-	try 
+	BitcoinExchange exchange(argv[1]);
+	try
 	{
 		exchange.create_database();
 		exchange.search_database();
@@ -18,5 +18,5 @@ int main(int argc, char **argv)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-    return 0;
+	return 0;
 }

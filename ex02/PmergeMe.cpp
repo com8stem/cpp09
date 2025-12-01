@@ -367,12 +367,12 @@ std::list<int> merge_insertion_sort_list(std::list<int> lst)
 
 void PmergeMe::MIsort_vec()
 {
-	std::cout << "Before:	";
+    std::cout << "Before:	";
     for (size_t i = 0; i < this->vec_.size(); i++)
     {
         std::cout << this->vec_.at(i) << " ";
     }
-	std::cout << std::endl;
+    std::cout << std::endl;
 
     clock_t start = clock();
     this->vec_ = merge_insertion_sort_vec(this->vec_);

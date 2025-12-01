@@ -12,7 +12,7 @@ int main(int argc, char **argv)
         RPN calculator(argv[1]);
         calculator.calc_by_RPN();
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
     }

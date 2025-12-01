@@ -10,20 +10,20 @@
 
 class BitcoinExchange
 {
-    private:
-        std::string filename_;
-        std::map<std::string, float> database_;
-        BitcoinExchange();
+private:
+    std::string filename_;
+    std::map<std::string, float> database_;
+    BitcoinExchange();
 
-    public:
-        BitcoinExchange(const std::string input_filename);
-        BitcoinExchange(const BitcoinExchange &);
-        BitcoinExchange &operator=(const BitcoinExchange &);
-        ~BitcoinExchange();
-        void read_csv(std::ifstream &ifs);
-        void open_txt(std::ifstream &ifs);
-        void create_database();
-        void search_database();
+public:
+    BitcoinExchange(const std::string input_filename);
+    BitcoinExchange(const BitcoinExchange &);
+    BitcoinExchange &operator=(const BitcoinExchange &);
+    ~BitcoinExchange();
+    void read_csv(std::ifstream &ifs);
+    void open_txt(std::ifstream &ifs);
+    void create_database();
+    void search_database();
 };
 
 #endif
