@@ -128,7 +128,7 @@ bool is_valid_key(std::string key)
     int m = std::atoi(month.c_str());
     int d = std::atoi(day.c_str());
 
-    struct tm tm_val = {};
+    std::tm tm_val = {};
     tm_val.tm_year = y - 1900;
     tm_val.tm_mon = m - 1;
     tm_val.tm_mday = d;

@@ -7,6 +7,7 @@
 #include <map>
 #include <exception>
 #include <cctype>
+#include <ctime>
 
 class BitcoinExchange
 {
